@@ -27,6 +27,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
         prePostEnabled = true
 )
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
     CustomUserDetailsService customUserDetailsService;
 
@@ -59,6 +60,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .headers().frameOptions().sameOrigin() //for the h2 console
+                .and()
                 .cors()
                 .and()
                 .csrf()
@@ -71,6 +74,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers("/",
+                        "/console/**", //for the h2 console
                         "/favicon.ico",
                         "/**/*.png",
                         "/**/*.gif",
