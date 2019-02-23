@@ -7,7 +7,10 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import javax.annotation.PostConstruct;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.TimeZone;
+import java.util.function.BiFunction;
 
 @SpringBootApplication
 @EntityScan(basePackageClasses = {
